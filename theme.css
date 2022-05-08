@@ -215,16 +215,21 @@ h3 {
 	justify-content: space-between;
 }
 
-@media (max-width: 767px) {
-	.list-item {
-	flex-direction: column;
-}
-}
+
 
 .list-item span {
 	display: block;
 max-width: 400px;
+	flex: 1;
+}
+
+@media (max-width: 767px) {
+	.list-item {
+	flex-direction: column;
+}
+	.list-item span {
 	text-align: center;
+}
 }
 
 .warning {
