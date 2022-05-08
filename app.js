@@ -63,7 +63,7 @@ const App = {
 	},
 	watch: {
 		inputValue(value) {
-			if (value.length > 50) {
+			if (value.length > 100) {
 				this.warning = true;
 				this.inputValue = '';
 				return;
