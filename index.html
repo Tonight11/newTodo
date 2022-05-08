@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="theme.css" />
+		<title>Document</title>
+	</head>
+	<body v>
+		<div class="container pt-5">
+			<div class="card p-5" id="count" v-cloak>
+				<h1
+					:class="{
+						'primary': title.length < 5,
+						'bold': true
+				}"
+					v-text="title"
+				></h1>
+				<div class="container__footer">
+					<form action="#" @submit="addNewTodo">
+						<div class="form-control">
+							<input
+								type="text"
+								:placeholder="myPlace"
+								v-model="inputValue"
+							/>
+							<div v-if="warning" class="warning">
+								Пожалуйста не утраждайте себя, сделайте что
+								нибудь легче и не ломайте мой проект
+							</div>
+						</div>
+						<button class="btn" type="submit">Добавить</button>
+					</form>
+					<hr />
+					<h3>List</h3>
+					<ul class="list" v-if="todo.length">
+						<li
+							class="list-item"
+							v-for="(note, i) in todo"
+							:key="note"
+							:class="[note.completed === true ? 'completed' : '']"
+						>
+							<span
+								:style="{color: note.item.length > 12 ? 'red' : 'black'}"
+								>{{ i + 1 }}. {{ note.item }}
+							</span>
+							<div class="footer__btn">
+								<button
+									v-if="note.completed === false"
+									class="btn primary"
+									@click="completeNote(i)"
+								>
+									Сделано
+								</button>
+								<button
+									v-show="note.completed === true"
+									class="btn blue"
+									@click="notCompleteNote(i)"
+								>
+									Еще нет
+								</button>
+								<button
+									class="btn danger"
+									@click.right.prevent="deleteNote(i)"
+								>
+									Удалить
+								</button>
+							</div>
+						</li>
+					</ul>
+					<div class="text" v-show="!todo.length">
+						Заметок пока что нету
+					</div>
+					<hr />
+					<div class="counter">
+						<div class="counter__item">
+							Список заметок: {{ todo.length }}
+						</div>
+						<div class="counter__double">
+							Удвоенный список заметок: {{ todoDoubleLength }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://unpkg.com/vue@next"></script>
+		<script src="app.js"></script>
+	</body>
+</html>
